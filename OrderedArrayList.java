@@ -1,4 +1,4 @@
-	// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
 // APCS pd7
 // L02 -- Well Al B. Sorted
 // 2021-12-12
@@ -87,7 +87,7 @@ public class OrderedArrayList
   public void addBinary(Integer newVal)
   {
       int low = 0;
-      int high = this.size()-1;
+      int high = this.size();
       
       addBinaryHelper(newVal, low, high);
       
@@ -97,93 +97,60 @@ public class OrderedArrayList
   public void addBinaryHelper(Integer newVal, int low, int high)
   {
     
-      System.out.println(low);
-      System.out.println(high);
-      /*
-      if (this.size() == 0){
+      //System.out.println("low: " + low);
+      //System.out.println("high: " + high);
+      
+      int mid = (low+high)/2;
+      if(this.size() == 0){
       	_data.add(newVal);
       }
-      else 
-      if ((low+high)/2 == this.size()-1 && newVal < this.get((low+high)/2)){
-      	_data.add(this.size()-1, newVal);
-      } 
-      else if (this.size() == 1){
-        if (newVal < this.get(0)){
-          _data.add(0, newVal);
-        }
-        else {
-          _data.add(newVal);
-        }
+      else if(this.size() == 1){
+      	if(newVal > this.get(0)){
+      		_data.add(newVal);
+      	}
+      	else{
+      		_data.add(0, newVal);
+      	}
       }
-      else if (newVal > this.get((low+high)/2) && newVal < this.get((low+high)/2)+1){
-      	_data.add((low+high)/2+1, newVal);
-      } 
-      else if (newVal < this.get((low+high)/2)+1 ) {
-      	high = (low+high)/2+1;
-      	addBinaryHelper(newVal, low, high);
+      else if(low == this.size()-1){
+      	_data.add(newVal);
       }
-      else {
-      	low = (low+high)/2;
-      	addBinaryHelper(newVal, low, high);
+      else if(high == 0){
+      	_data.add(0, newVal);
       }
-      */
-
-      // NEW REWRITTEN METHOD
-      int mid = (low+high)/2;
-
-      if(this.size() == 0){
-        _data.add(newVal);
+      else if(newVal >= this.get(mid)){
+      	if(this.size() == mid+1 || newVal <= this.get(mid+1)){
+      		_data.add(mid+1, newVal);
+      	}
+      	else{
+      		low = mid;
+      		addBinaryHelper(newVal, low, high);
+      	}
       }
       else{
-          if(high-low == 1){
-            if(newVal > this.get(mid) && newVal > this.get(mid+1)){
-              _data.add(newVal);
-            }
-            else if(newVal > this.get(mid) && newVal < this.get(mid+1)){
-              _data.add(mid+1, newVal);
-            }
-            else if (newVal < this.get(mid) && newVal < this.get(mid+1)){
-              _data.add(mid, newVal);
-            }
-            else{
-              _data.add(mid, newVal);
-            }
-          }
-          else{
-            if(newVal > this.get(mid)){
-            low = mid+1;
-            addBinaryHelper(newVal, low, high);
-            }
-            else if (newVal < this.get(mid)){
-              high = mid-1;
-              addBinaryHelper(newVal, low, high);
-            }
-          }
-          
-        
+      	high = mid;
+      	addBinaryHelper(newVal, low, high);
       }
   } 
-/*=====^====================================^=========
-    =====^====================================^=========*/
 
   // main method solely for testing purposes
   public static void main( String[] args )
   {
 
     OrderedArrayList Franz = new OrderedArrayList();
-  /*=====^====================================^=========
     // testing linear search
     for( int i = 0; i < 15; i++ )
       Franz.addLinear( (int)( 50 * Math.random() ) );
     System.out.println( Franz );
+    /*=====^====================================^=========
    =====^====================================^=========*/
 
     // testing binary search
     Franz = new OrderedArrayList();
-    for( int i = 0; i < 2; i++ ) 
+    for( int i = 0; i < 15; i++ ){ 
       Franz.addBinary( (int)( 50 * Math.random() ) );
+    }
     System.out.println( Franz );
-
   }//end main()
 
 }//end class OrderedArrayList
