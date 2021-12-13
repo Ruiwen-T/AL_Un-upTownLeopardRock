@@ -1,9 +1,9 @@
 # Un-upTownLeopardRock: Lea Kwok, Raven (Ruiwen) Tang
 
 ## ALTester
-* Create Object type of OrderedArrayList and variable type ArrayList. 
+* Create a new ArrayList<Integer>. 
 * Use a for loop to populate the Array with random integers. 
-* Print the ArrayList, its size, and its isSorted() return value (which should be true).
+* Print the ArrayList, its size, and its isSorted() return value. 
 
 isSorted() stores the previous value in the ArrayList while iterating through ArrayList using a for-each loop. If at any point the current element is less than the previous element, the method returns false. Otherwise, the current element is stored as the previous element, and the for loop continues until the method returns true at the end of the ArrayList.
 
