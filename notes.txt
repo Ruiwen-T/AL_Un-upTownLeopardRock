@@ -6,16 +6,17 @@ time spent: 02.0 hours
 
 /*
 DISCO:
+- ENSURING COMPILABILITY AT EVERY STAGE IS CRUCIAL!!!!!! (enforced by TIPS/GUIDELINES) We confused ourselves a lot with the binary search add method, but once we commented everything out and then reworked each statement, we were able to pinpoint the source of error messages faster and have a better understanding of how the algorithm in our heads aligns with what the code is doing.
+- We should always check if there is a skeleton in closet and if there is something in library.
+- It's very helpful to use "this" because it allows us to use methods of the Object, like get(), set(), and size(). However, there are cases where _data should be used instead, because we are trying to manipulate _data as well.
 - We used .get() instead of [] for retrieving an element at an index.
-- We used .add() to populate an ArrayList because that's the only way it can be populated, other than with add at index.
-- isSorted() should always return true no matter what order we populate the array in, because we write the OrderedArrayList to maintain the invariant that its elements are sorted, so we use ALTester to check that we wrote OrderedArrayList correctly. 
-- We made an ArrayList of variable type ArrayList but object type OrderedArrayList() to test OrderedArrayList. In addition, OrderedArrayList extends ArrayList so it inherits the methods of ArrayList and only needs to override a few that affect whether or not it's sorted.
 - built-in toString() for ArrayList returns String with elements in form "[_, _, _, _, ..., _]"
+- Our method of adding (binary version) is different from binary search because we are checking if the element lies between the elements at index mid and index mid+1. However, binary search only compares the desired element to one element, the element at index mid. Moreover, another confusing aspect of adding using binary is that the size of the ArrayList is changing.
 
 QCC:
-- We decided not to modify the methods add at index and set because we require the use of add at index in our modified OrderedArrayList add() method, however, if a user were to use add at index or set, the invariant of the elements always being sorted, will no longer be true. Should we modify those methods and how would we do that without using the ArrayList add at index in OrderedArrayList add at index?
-- We received these notes when we compiled ALTester and we think it's from using Object type OrderedArrayList with variable type ArrayList. However, the code still runs with no errors. Is this something we should be concerned about? 
+- We received these notes when we compiled ALTester and we think it's from using Object type OrderedArrayList with variable type ArrayList. However, the code still runs with no errors. Is this something we should be concerned about? (We later changed the Object type to ArrayList as well.)
     Note: ALTester.java uses unchecked or unsafe operations.
     Note: Recompile with -Xlint:unchecked for details.
-- In order to override the add() method of ArrayList in OrderedArrayList, we needed to make the return type boolean and parameter Object o, which we later typecasted into an int in the method body.
+- What is the point of ALTester.java? It doesn't seem to have much connection with OrderedArrayList.java. We originally thought we were meant to extend ArrayList with OrderedArrayList and then initialize an object with variable type ArrayList and object type OrderedArrayList, but doing so would only be possible if OrderedArrayList was a subclass of ArrayList.
+- In our binary version of add, we thought of many cases that would require their own if statements. For example, we considered cases in which _data was length 1 or 2. However, we're not sure if these cases were actually necessary?
 */
