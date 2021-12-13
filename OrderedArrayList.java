@@ -1,4 +1,4 @@
-// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
+	// Un-upTown Leopard Rock: Lea Kwok, Raven (Ruiwen) Tang
 // APCS pd7
 // L02 -- Well Al B. Sorted
 // 2021-12-12
@@ -21,24 +21,115 @@ QCC:
 */
 
 import java.util.ArrayList;
-public class OrderedArrayList extends ArrayList{
 
-  public OrderedArrayList(){
+public class OrderedArrayList
+{
+
+  // instance of class ArrayList, holding objects of type Integer
+  // (i.e., objects of a class that implements interface Integer)
+  private ArrayList<Integer> _data;
+
+  // default constructor
+  // initializes instance variables
+  public OrderedArrayList()
+  {
+	_data = new ArrayList<Integer>();
   }
 
-  public boolean add(Object o){
-    if(this.size() == 0){
-      this.add(0, (int)o);
-      return true;
-    }
-    for(int i = 0; i < this.size(); i++){
-      if((int)o < (int)this.get(i)){
-        this.add(i, (int)o);
-        return true;
+  public String toString()
+  {
+      return _data.toString();
+  }
+
+  public Integer remove( int i )
+  {
+      
+      return _data.remove(i);
+  }
+
+  public int size()
+  {
+      return _data.size();
+  }
+
+  public Integer get( int i )
+  {
+      return _data.get(i);
+  }
+
+  // inserts newVal at the appropriate index
+  // maintains ascending order of elements
+  // uses a linear search to find appropriate index
+  public void addLinear(Integer newVal)
+  {
+      if(this.size() == 0){
+      		_data.add(0, newVal);
+      } 
+      else {
+      	      boolean found = false;
+	      for(int i = 0; i < this.size(); i++){
+		  if(newVal < this.get(i) && found == false){
+		  	_data.add(i, newVal);
+		  	found = true;
+		  }
+	      }
+	      if(found == false){
+	      		_data.add(this.size(), newVal);
+	      }
       }
-    }
-    this.add(this.size(), (int)o);
-    return true;
+
   }
+
+  // inserts newVal at the appropriate index
+  // maintains ascending order of elements
+  // uses a binary search to find appropriate index
+  public void addBinary(Integer newVal)
+  {
+      int low = 0;
+      int high = this.size()-1;
+      addBinaryHelper(newVal, low, high);
+  } 
   
-}
+  public void addBinaryHelper(Integer newVal, int low, int high)
+  {
+      if (newVal == this.get((low+high)/2) ){
+      	_data.add((low+high)/2, newVal);
+      } 
+      else if ((low+high)/2 == 0 && newVal < this.get((low+high)/2)){
+      	_data.add(0, newVal);
+      }
+      else if ((low+high)/2 == this.size()-1 && newVal < this.get((low+high)/2)){
+      	_data.add(this.size()-1, newVal);
+      }
+      
+      else if (newVal < this.get((low+high)/2) ) {
+      	high = (low+high)/2-1;
+      	addBinaryHelper(newVal, low, high);
+      }
+      else {
+      	low = (low+high)/2+1;
+      	addBinaryHelper(newVal, low, high);
+      }
+  } 
+
+  // main method solely for testing purposes
+  public static void main( String[] args )
+  {
+
+    OrderedArrayList Franz = new OrderedArrayList();
+
+    // testing linear search
+    for( int i = 0; i < 15; i++ )
+      Franz.addLinear( (int)( 50 * Math.random() ) );
+    System.out.println( Franz );
+
+    // testing binary search
+    Franz = new OrderedArrayList();
+    for( int i = 0; i < 15; i++ ) 
+      Franz.addBinary( (int)( 50 * Math.random() ) );
+    System.out.println( Franz );
+      =====^====================================^=========*/
+
+  }//end main()
+
+}//end class OrderedArrayList
