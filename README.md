@@ -9,7 +9,7 @@ isSorted() stores the previous value in the ArrayList while iterating through Ar
 
 ## OrderedArrayList
 * Inherited methods from ArrayList
-* add()
+* public boolean add(Object o)
     * If the ArrayList is empty, use ArrayList's add at index method to add the element at index 0. Return true.
     * Iterate through the ArrayList using a for loop to check if the element being put in is less than the element at the current index. If true, add the element at that index and return true. 
     * After the for loop, add the element using ArrayList's add at index method at the index of the size of the ArrayList. Return true.
